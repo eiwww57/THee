@@ -21,18 +21,6 @@ const methodOverride = require('method-override');
 const exp = require("constants");
 app.use(methodOverride('_method'));
 
-//define disk
-const storage = multer.diskStorage({
-    destination:function(req, file, cb){
-        cb(null, 'public/imgs');
-    },
-    filename:function(req,file,cb){
-        cb(null,file.originalname);
-    }
-});
-const upload = multer({
-    storage:storage
-});
 
 //view engine setup 
 app.engine('hbs', handlebars({

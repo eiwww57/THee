@@ -1,6 +1,6 @@
 const Product = require('../schema/product');
 
-class ProductController {
+class AdminController {
     //[GET] /products
     index(req, res){
         res.render('admin'); 
@@ -26,24 +26,23 @@ class ProductController {
             var product = new Product(req.body);
             product.save();
 
-            return res.redirect('./admin')
-            // var data ={
-            //     "ProID": id,
-            //     "ProName":name,
-            //     "Price": price,
-            //     "numofpro": quantity,
-            //     "Description": des,
-            //     "imglink": image,
-                
-            // }
-            // //insert into mongodb
-            // db.collection('Products').insertOne(data, function(err,collection){
-            //     if (err) throw err;
-            //     console.log("added"); 
-                
-            // });
-            // //return to admin page           
+            return res.redirect('/admin')
+        
+    }
+    deleteProducts(req, res){
+        //code here
+        Product.deleteOne({ "ProID": req.query.id }, function(err) {
+        if (!err) {
+            return res.redirect('/admin/viewproducts');
+        }
+        else {
+            return res.redirect('/products');
+        }}
+        );
+    }
+    updateProducts(req, res){
+        //An codes here
     }
 }
 
-module.exports = new ProductController;
+module.exports = new AdminController;

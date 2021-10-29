@@ -19,6 +19,8 @@ const adminController = require('../app/controllers/AdminController');
 
 router.get('/viewproducts', adminController.viewProducts);
 router.post('/addproducts', upload.single('imglink'), adminController.addProducts);
+router.get('/deleteproducts', adminController.deleteProducts);
+router.post('/updateproducts', adminController.updateProducts); //An
 router.get('/', adminController.index);
 
 module.exports = router;
