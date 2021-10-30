@@ -15,6 +15,13 @@ class ProductController {
             }
         });
     }
+    productDetails(req, res){
+        Product.findOne({ProID: req.params.id}, req.body).lean()
+        .then(data=>{
+            res.render('product_detail', {data})
+        });
+
+    }
 }
 
 module.exports = new ProductController;
