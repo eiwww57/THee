@@ -1,0 +1,68 @@
+	{{!-- <script>
+		function signup_val(x){
+			if (x=="fus") {
+				alert("This username is already registered");					
+			}
+			else if (x=="fpd") {
+				alert("Password and Confirm-password are not matched")
+			}
+		}
+	onLoad="signup_val('<?php if (isset($_GET['status'])) echo $_GET['status'] ?>')"
+	</script> --}}
+</head>
+<body>
+<h1 style=" font-size: 4em; margin: 20px 30px; text-align: center">Create your account</h1>
+<div class="container" style="background-color: #EEEEEE">
+	<div class="row">
+		<div class="col-4" style=" padding: 10px">
+			<img src="/imgs/Quy trình/login.png" class="img-fluid" height="470" width="350">
+			<img src="/imgs/Quy trình/footer.png" class="img-fluid" width="350" style="margin-top: 2%">
+		</div>
+		<div class="col-4">
+		<form action="/user/signup"  method="POST">
+			<table width="310" border="0" cellspacing="10" cellpadding="10" style="padding: 10px; ">
+				<tbody> 
+				<tr>
+					<td>Username: </td>
+					<td><input type="text" name="username" title="5-20 characters" pattern=".{5,}" ></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"></td>
+				</tr>
+				<tr>
+					<td width="115">Full name: </td>
+					<td width="160"><input type="text" name="name" required ></td>
+				</tr>
+				<tr>
+					<td>Your email: </td>
+					<td><input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required ></td>
+				</tr>
+				<tr>
+					<td>National ID</td>
+					<td><input type="text" name="NaID" required ></td>
+				</tr>
+				<tr>
+					<td>Phone:</td>
+					<td><input type="tel" name="phone" pattern="([0-9]+)(.{9,12})" required></td>
+				</tr>
+				<tr>
+					<td>Date of birth:</td>
+					<td><input type="date" name="DOB" max="2009-01-01" required ></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center"><input type="checkbox" required>       I agree with T-Hee Policy</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center"><input type="submit" style="font-family: Hysteria; font-size: 2em; border-radius: 10px; background-color: white;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);" value="Create an account"></td>
+				</tr>
+				</tbody>
+			</table>
+		</form>
+		</div>
+		<div class="col-4" style=" padding: 10px; padding-left: 20px">
+			<img src="/imgs/Quy trình/login.png" class="img-fluid" height="470" width="350">
+			<img src="/imgs/Quy trình/footer.png" class="img-fluid" width="350" style="margin-top: 2%">
+		</div>
+	</div>
+</div>
