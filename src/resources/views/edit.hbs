@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>UPDATE CLOTHES</h1>
-    <form method="post" action="/update/{{data._id}}?_method=PUT" >
+    <form method="post" action="/admin/update/{{data._id}}?_method=PUT" >
 
         <div>
         <div class="form-group">
@@ -50,19 +50,22 @@
 
     <div class="upimg">
         <label >Uploaded image</label>
-        <img src="{{data.imglink}}">
-        
-
-   
+        <img src="/{{data.imglink}}" style="width:auto; height:400px;">
+       
         
     </div> 
         
          
+   
+
         <button type="submit" class="btn btn-info" id="submitbutton">Update Product</button>
     
      
       {{!-- <a type="submit" class="btn btn-secondary" ><i class="fa fa-list-alt" ></i> View All</a> --}}
     </form>
+
+
+    
      <style>
           
 

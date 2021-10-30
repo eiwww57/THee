@@ -17,10 +17,17 @@ const upload = multer({
 
 const adminController = require('../app/controllers/AdminController');
 
+
+//Method put
+const methodOverride = require('method-override');
+const exp = require("constants");
+
+
 router.get('/viewproducts', adminController.viewProducts);
 router.post('/addproducts', upload.single('imglink'), adminController.addProducts);
 router.get('/deleteproducts', adminController.deleteProducts);
-router.post('/updateproducts', adminController.updateProducts); //An
+router.get('/edit/:id', adminController.editProducts);
+router.put('/update/:id',upload.single('imglink') ,adminController.updateProduct);
 router.get('/', adminController.index);
 
 module.exports = router;

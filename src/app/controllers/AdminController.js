@@ -40,8 +40,19 @@ class AdminController {
         }}
         );
     }
-    updateProducts(req, res){
-        //An codes here
+    editProducts(req, res){
+        Product.findOne({_id:req.params.id}, req.body).lean()
+        .then(data=>{
+            res.render('edit', {data})
+        });
+    }
+
+    updateProduct(req,res){
+        
+        Product.updateOne({_id:req.params.id}, req.body)
+        .then(data=>{
+            res.redirect('/admin/viewproducts');
+        })
     }
 }
 
