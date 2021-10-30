@@ -16,11 +16,12 @@
 			        <h1 style="text-align: center; font-family: Hysteria; font-size: 5em; margin-top:auto;">Products</h1>
                 </div>
             </div>
+
             <div class="row">
                 {{#each products}}
                 <div class="col-lg-4">
-                    <a href= "prodetail?id={{this.ProID}}" alt="" title="">
-                    <img src="{{this.imglink}}" class="img-fluid" alt="">
+                    <a href= "prodetail?id={{this.ProID}}">
+                    <img src="{{this.imglink}}" class="img-fluid" style="height: 250px;width:100%;object-fit: cover;">
                     </a>
                     <h2 style="text-align: center;">
                     <a href="prodetail?id={{this.ProID}}" style="text-decoration: none;">{{this.ProName}}</a>
