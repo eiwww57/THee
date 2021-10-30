@@ -37,7 +37,7 @@ class UserController {
     auth(req, res){
         var password = req.body.password;
 
-        User.find({username: req.body.username})
+        User.findOne({username: req.body.username})
         .then(user => {
             if(user){ 
                 bcrypt.compare(password, user.password, function(err, result){
