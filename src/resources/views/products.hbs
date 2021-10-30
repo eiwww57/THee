@@ -12,7 +12,7 @@
         <div class="container"> 
             <div class="row" id="intro">
 		        <div class="col-12">
-	    	        <img class="d-block w-100" src="imgs/Quy trình/coverphoto.jpg" alt="Second slide">
+	    	        <img class="d-block w-100" src="/imgs/Quy trình/coverphoto.jpg" alt="Second slide">
 			        <h1 style="text-align: center; font-family: Hysteria; font-size: 5em; margin-top:auto;">Products</h1>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 {{#each products}}
                 <div class="col-lg-4" style="background-color:#F1F1F1;">
                     <a href= "/products/{{this.ProID}}">
-                    <img src="{{this.imglink}}" class="img-fluid" style="height: 250px;width:100%;object-fit: cover;">
+                    <img src="/{{this.imglink}}" class="img-fluid" style="height: 250px;width:100%;object-fit: cover;">
                     </a>
                     <h2 style="text-align: center;">
                     <a href="/products/{{this.ProID}}" style="text-decoration: none;">{{this.ProName}}</a>
