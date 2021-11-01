@@ -1,5 +1,5 @@
 const Product = require('../schema/product');
-
+var db = require('../../config/db');
 class ProductController {
     //[GET] /products
     index(req, res){
@@ -22,6 +22,16 @@ class ProductController {
         });
 
     }
+
+    searchProduct(req,res,next){
+        const input = req.query.ProName;
+        let regex = new RegExp(input,'i');
+        Product.find({"ProName": regex}).lean()
+        .then(data=>{
+            res.render('products', {products:data});
+        })
+    }
+    
 }
 
 module.exports = new ProductController;
