@@ -49,11 +49,14 @@ class AdminController {
 
     updateProduct(req,res){
         
+        req.body.imglink = "imgs/" + req.body.imglink
         Product.updateOne({_id:req.params.id}, req.body)
         .then(data=>{
             res.redirect('/admin/viewproducts');
         })
     }
+
+
 }
 
 module.exports = new AdminController;
