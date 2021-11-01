@@ -56,7 +56,21 @@ class AdminController {
         })
     }
 
+    editImg(req,res){
+        
+        Product.findOne({_id:req.params.id}, req.body).lean()
+        .then(data=>{
+            res.render('imgedit',{data})
+        })
+    }
 
+    updateImg(req,res){
+        req.body.imglink = "imgs/" + req.file.filename;
+        Product.updateOne({_id:req.params.id},req.body).lean()
+        .then(data=>{
+            res.redirect('/admin/viewproducts')
+        })
+    }
 }
 
 module.exports = new AdminController;

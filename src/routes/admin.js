@@ -28,6 +28,8 @@ router.post('/addproducts', upload.single('imglink'), adminController.addProduct
 router.get('/deleteproducts', adminController.deleteProducts);
 router.get('/edit/:id', adminController.editProducts);
 router.put('/update/:id',upload.single('imglink') ,adminController.updateProduct);
+router.get('/imgedit/:id', adminController.editImg);
+router.post('/updateimg/:id', upload.single('imglink'), adminController.updateImg);
 router.get('/', adminController.index);
 
 module.exports = router;
