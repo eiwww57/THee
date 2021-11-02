@@ -22,7 +22,7 @@ class UserController {
             })
             user.save()
             .then(user => {
-                res.redirect('/products')
+                res.redirect('/')
             })
             .catch(error => {
                 console.log(error);
@@ -54,11 +54,11 @@ class UserController {
                         }
                         
                     } else {
-                        res.send("Login Unsucessfully");
+                        res.send("Your password and username doesn't match babe ꒰´꒳`∗꒱");
                     }
                 })
             }else{
-                res.send('Wrong');
+                res.send('Username does not even exist (˃ᆺ˂✿)');
             }   
         })
     }
