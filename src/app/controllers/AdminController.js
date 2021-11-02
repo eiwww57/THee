@@ -49,11 +49,19 @@ class AdminController {
 
     updateProduct(req,res){
         
-      
-        Product.updateOne({_id:req.params.id}, req.body)
-        .then(data=>{
-            res.redirect('/admin/viewproducts');
-        })
+        if(req.file){
+            req.body.imglink = "imgs/" + req.file.filename;
+            Product.updateOne({_id:req.params.id},req.body).lean()
+            .then(data=>{
+                res.redirect('/admin/viewproducts')
+            })
+        }
+        else{
+            Product.updateOne({_id:req.params.id},req.body).lean()
+            .then(data=>{
+                res.redirect('/admin/viewproducts')
+            })
+        }
     }
 
     editImg(req,res){
@@ -65,11 +73,21 @@ class AdminController {
     }
 
     updateImg(req,res){
-        req.body.imglink = "imgs/" + req.file.filename;
-        Product.updateOne({_id:req.params.id},req.body).lean()
-        .then(data=>{
-            res.redirect('/admin/viewproducts')
-        })
+
+        if(req.file){
+            req.body.imglink = "imgs/" + req.file.filename;
+            Product.updateOne({_id:req.params.id},req.body).lean()
+            .then(data=>{
+                res.redirect('/admin/viewproducts')
+            })
+        }
+        else{
+            Product.updateOne({_id:req.params.id},req.body).lean()
+            .then(data=>{
+                res.redirect('/admin/viewproducts')
+            })
+        }
+       
     }
 }
 
