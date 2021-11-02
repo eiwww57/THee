@@ -11,13 +11,13 @@ router.use(session({
 }));
 
 const authenticate = (req, res, next) => {
-    if (req.session.isAuth){
+    if (req.session.isAuth == true){
         next();
     }
     else {
         try{
 
-            const token = req.params.token.split(' ')[1];
+            const token = req.query.token.split(' ')[1];
             const decode = jwt.verify(token, 'SecretValue');
             
             req.session.isAuth = true;

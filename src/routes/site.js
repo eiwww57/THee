@@ -5,7 +5,8 @@ const siteController = require('../app/controllers/SiteController');
 const middleware = require('../app/middleware/authenticate');
 
 router.use('/about', siteController.about)
-router.get('/:token', middleware, siteController.index1)
-router.get('/', siteController.index)
+//router.get('/:token', middleware, siteController.index1)
+router.get('/logout',siteController.logout)
+router.get('/',middleware, siteController.index1)
 
 module.exports = router;

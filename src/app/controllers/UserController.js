@@ -47,10 +47,10 @@ class UserController {
                     if (result){
                         let token = jwt.sign({name: user._id}, 'SecretValue', {expiresIn: '1h'});
                         if (user.admin == true){
-                            res.redirect('/admin/Bearer '+token);
+                            res.redirect('/admin?token=Bearer '+token);
                         }
                         else {
-                            res.redirect('/Bearer '+token);
+                            res.redirect('/?token=Bearer '+token);
                         }
                         
                     } else {

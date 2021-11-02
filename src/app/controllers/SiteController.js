@@ -15,6 +15,12 @@ class SiteController {
     about(req, res){
         res.render('About');
     }
+
+    logout(req, res){
+        req.session.isAuth = false;
+        req.session.userID = null;
+        res.redirect('/user/login');
+    }
 }
 
 module.exports = new SiteController;
