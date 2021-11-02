@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>UPDATE CLOTHES</h1>
-    <form method="post" action="/admin/update/{{data._id}}?_method=PUT" >
+    <form method="post" action="/admin/update/{{data._id}}" enctype="multipart/form-data"  >
 
         <div>
         <div class="form-group">
@@ -52,32 +52,23 @@
         <label >Uploaded image</label>
         <img src="/{{data.imglink}}" style="width:auto; height:400px;">
        
-         
-
-
-
-
-    </div> 
+   </div> 
         
-        <div class="center">
+     <div class="center">
         <div class="form-input">
           <label for="file-ip-1">Upload Image</label>
-          <input type="file" name="imglink" id="file-ip-1" accept="image/*" onchange="showPreview(event);" required>
+          <input type="file" name="imglink" id="file-ip-1" accept="image/*" onchange="showPreview(event);" >
           <div class="preview">
             <img id="file-ip-1-preview">
           </div>
         </div>
-      </div>   
-   
+      </div>  
 
         <button type="submit" class="btn btn-info" id="submitbutton">Update Product</button>
     
      
       {{!-- <a type="submit" class="btn btn-secondary" ><i class="fa fa-list-alt" ></i> View All</a> --}}
     </form>
-
-
-    
      <style>
           
 
