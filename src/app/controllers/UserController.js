@@ -18,7 +18,7 @@ class UserController {
                 phone: req.body.phone,
                 password: hashedPass,
                 NaID: req.body.NaID,
-                DOB: req.body.DOB
+                DOB: req.body.DOB,
             })
             user.save()
             .then(user => {
@@ -42,20 +42,23 @@ class UserController {
             if(user){ 
                 bcrypt.compare(password, user.password, function(err, result){
                     if(err){
-                        console.log(err);
+                        res.send(err);
                     }
                     if (result){
-                        let token = jwt.sign({name: user.name}, 'SecretValue', {expiresIn: '1h'});
-                        res.json({
-                            message: "Login Succesful",
-                            token
-                        })
+                        let token = jwt.sign({name: user._id}, 'SecretValue', {expiresIn: '1h'});
+                        if (user.admin == true){
+                            res.redirect('/admin/Bearer '+token);
+                        }
+                        else {
+                            res.redirect('/Bearer '+token);
+                        }
+                        
                     } else {
-                        console.log(result);
+                        res.send("Login Unsucessfully");
                     }
                 })
             }else{
-                console.log('No user found');
+                res.send('Wrong');
             }   
         })
     }

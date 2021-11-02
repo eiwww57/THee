@@ -2,6 +2,7 @@ const productRouter = require('./products');
 const siteRouter = require('./site');
 const adminRouter = require('./admin');
 const userRouter = require('./user');
+
 function route(app){
     app.use('/products', productRouter);
 

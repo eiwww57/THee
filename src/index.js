@@ -9,11 +9,29 @@ const { stringify } = require("querystring");
 const mongoose = require('mongoose');
 const multer = require('multer');
 const handlebars = require('express-handlebars');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 //database connection
 const db = require('./config/db');
 app.use(bodyParser.urlencoded({extended:true}));
 db.connect();
 
+//session config
+app.use(session({
+    secret: 'mySecretKey',
+    resave: true,
+    saveUninitialized: false
+}));
+// app.use(session({
+//     secret: 'SecretValue',
+//     saveUninitialized: false, 
+//     resave: false, 
+//     store: MongoStore.create({ 
+//         mongoUrl: 'mongodb+srv://teeheeadmin:01011994@cluster0.bjskh.mongodb.net/test',
+//         ttl: 3 * 60 * 60, // 60 seconds * 60 minutes * 3 hours
+//      })
+// }));
 
 // const proedit = require('../schema/product');
 
