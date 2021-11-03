@@ -51,6 +51,7 @@ class UserController {
                     if (result){
                         var payload = {
                             name: user._id,
+                            fullname: user.name,
                             admin: user.admin
                         }
                         let token = jwt.sign(payload, 'SecretValue', {expiresIn: '1h'});

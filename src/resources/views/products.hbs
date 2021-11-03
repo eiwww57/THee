@@ -20,7 +20,7 @@
                     <h4 class="card-title">{{this.ProName}}</h4>
                     <p class="card-text">{{this.Description}}</p>
                     <p class="card-text">Available: {{this.numofpro}} units</p>
-                    <span><button onclick="themvao( '{{this.ProID}}', '{{this.ProName}}', '{{this.Price}}','{{this.numofpro}}')">Add to cart</button></span>
+                    <span><button onclick="themvao('{{this.ProID}}', '{{this.ProName}}', '{{this.Price}}','{{this.numofpro}}')">Add to cart</button></span>
                     <p style="float: right;">Price: {{this.Price}} VNĐ</p>
                 </div>
             </div>
@@ -53,15 +53,8 @@
         
         
         var elem = document.getElementById("soluong");
-        elem.innerText = sl
-
-    }
-
-    function cartview() {
-        window.location.href = "/user/cart";
-        var xhr = new XMLHttpRequest();
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(dict));
-       
+        elem.innerText = sl;
+        var cartinfo = document.getElementById('cart');
+        cartinfo.value = JSON.stringify(dict, replacer);
     }
 </script>

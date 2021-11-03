@@ -2,6 +2,7 @@ const productRouter = require('./products');
 const siteRouter = require('./site');
 const adminRouter = require('./admin');
 const userRouter = require('./user');
+const cartRouter = require('./cart');
 
 function route(app){
     app.use('/products', productRouter);
@@ -10,26 +11,9 @@ function route(app){
 
     app.use('/user', userRouter);
 
+    app.use('/cart', cartRouter);
+
     app.use('/', siteRouter);
-
-
-
-//     app.get( "/signin", 
-//         (req, res) => {
-
-//                     res.writeHead(200);
-//                     res.end("<h1> Signin page ! </h1>");
-
-//     });
-
-
-//     app.get( "/logout", 
-//         (req, res) => {
-
-//                     res.writeHead(200);
-//                     res.end("<h1> logout page ! </h1>");
-
-//     });
 
 }
 

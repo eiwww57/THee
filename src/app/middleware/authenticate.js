@@ -26,6 +26,7 @@ const adminAuth = (req, res, next) => {
             req.session.isAuth = true;
             req.session.userID = decode['name'];
             req.session.admin = decode['admin'];
+            req.session.userName = decode['fullname'];
             next();
 
         }
@@ -46,6 +47,7 @@ const userAuth = (req, res, next) => {
             req.session.isAuth = true;
             req.session.userID = decode['name'];
             req.session.admin = decode['admin'];
+            req.session.userName = decode['fullname'];
             next();
 
         }

@@ -19,6 +19,7 @@ class SiteController {
     logout(req, res){
         req.session.isAuth = false;
         req.session.userID = null;
+        req.session.userName = null;
         res.redirect('/user/login');
     }
 }

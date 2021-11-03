@@ -24,9 +24,12 @@
 			  <a class="nav-link" href="/products">Products</a>
 			</li>
 			<li class="nav-item">
-			  <button class="nav-link position-relative" onclick="cartview()">Cart
-			  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="soluong"></span>
-			  </button>
+				<form method="POST" action="/cart">
+					<input type="hidden" id="cart" name="cartinfo">
+					<button type="submit" class="nav-link position-relative">Cart
+					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="soluong"></span>
+					</button>
+				</form>
 			</li>
 		  </ul>
 		</div>
@@ -75,6 +78,26 @@
         }
 	
 	</style>
+	<script>
+		function replacer(key, value) {
+			if(value instanceof Map) {
+				return {
+				dataType: 'Map',
+				value: Array.from(value.entries()), // or with spread: value: [...value]
+				};
+			} else {
+				return value;
+			}
+			}
+		function reviver(key, value) {
+			if(typeof value === 'object' && value !== null) {
+				if (value.dataType === 'Map') {
+				return new Map(value.value);
+				}
+			}
+			return value;
+		}
+	</script>
 
 
     {{{body}}}
