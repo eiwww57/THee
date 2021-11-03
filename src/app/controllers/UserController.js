@@ -34,6 +34,10 @@ class UserController {
         res.render('login')
     }
 
+    cart(req, res){
+        console.log(req.headers);
+    }
+
     auth(req, res){
         var password = req.body.password;
 
@@ -45,7 +49,11 @@ class UserController {
                         res.send(err);
                     }
                     if (result){
-                        let token = jwt.sign({name: user._id}, 'SecretValue', {expiresIn: '1h'});
+                        var payload = {
+                            name: user._id,
+                            admin: user.admin
+                        }
+                        let token = jwt.sign(payload, 'SecretValue', {expiresIn: '1h'});
                         if (user.admin == true){
                             res.redirect('/admin?token=Bearer '+token);
                         }

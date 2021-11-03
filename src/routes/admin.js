@@ -24,11 +24,11 @@ const methodOverride = require('method-override');
 const exp = require("constants");
 
 
-router.get('/viewproducts',middleware, adminController.viewProducts);
+router.get('/viewproducts',middleware.adminAuth, adminController.viewProducts);
 router.post('/addproducts', upload.single('imglink'), adminController.addProducts);
 router.get('/deleteproducts', adminController.deleteProducts);
 router.get('/edit/:id', adminController.editProducts);
 router.post('/update/:id',upload.single('imglink') ,adminController.updateProduct);
-router.get('/', middleware, adminController.index);
+router.get('/', middleware.adminAuth, adminController.index);
 
 module.exports = router;

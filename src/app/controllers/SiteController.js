@@ -6,7 +6,7 @@ class SiteController {
     }
 
     index1(req, res){
-        User.findOne({_id: req.session.userID['name']}).lean()
+        User.findOne({_id: req.session.userID}).lean()
         .then(data=>{
             res.render('home', {data})
         });   

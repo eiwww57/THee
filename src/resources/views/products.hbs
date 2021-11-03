@@ -1,42 +1,67 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=1" name="viewport"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	
-    </head>
+<div class="container"> 
+    <div class="row" id="intro">
+        <div class="col-12">
+            <img class="d-block w-100" src="/imgs/Quy trình/coverphoto.jpg" alt="Second slide">
+            <h1 style="text-align: center; font-size: 5em; margin-top:auto;">Products</h1>
+            <form action="/products/search" method="get" style="padding-bottom: 35px;">
+            
+                <input type="text" class="form-control" name="ProName" placeholder="Cloth name"  >
 
-    <body>
-        <div class="container"> 
-            <div class="row" id="intro">
-		        <div class="col-12">
-	    	        <img class="d-block w-100" src="/imgs/Quy trình/coverphoto.jpg" alt="Second slide">
-			        <h1 style="text-align: center; font-size: 5em; margin-top:auto;">Products</h1>
-                    <form action="/products/search" method="get" style="padding-bottom: 35px;">
-                   
-                     <input type="text" class="form-control" name="ProName" placeholder="Cloth name"  >
+            </form>
+        </div>
+    </div>
 
-                    </form>
+    <div class="row">
+        {{#each products}}
+        <div class="col-lg-4">
+            <div class="card">
+                <img class="card-img-top" src="/{{this.imglink}}" alt="Card image" style="height: 250px;width:100%;object-fit: cover;">
+                <div class="card-body">
+                    <h4 class="card-title">{{this.ProName}}</h4>
+                    <p class="card-text">{{this.Description}}</p>
+                    <p class="card-text">Available: {{this.numofpro}} units</p>
+                    <span><button onclick="themvao( '{{this.ProID}}', '{{this.ProName}}', '{{this.Price}}','{{this.numofpro}}')">Add to cart</button></span>
+                    <p style="float: right;">Price: {{this.Price}} VNĐ</p>
                 </div>
             </div>
-
-            <div class="row">
-                {{#each products}}
-                <div class="col-lg-4" style="background-color:#F1F1F1;">
-                    <a href= "/products/{{this.ProID}}">
-                    <img src="/{{this.imglink}}" class="img-fluid" style="height: 250px;width:100%;object-fit: cover;">
-                    </a>
-                    <h2 style="text-align: center;">
-                    <a href="/products/{{this.ProID}}" style="text-decoration: none;">{{this.ProName}}</a>
-                    </h2>
-                    <h3 style="text-align: center; text-color: rgb(123, 166, 245)">{{this.Price}} VNĐ</h3>
-				</div>
-                {{/each}}
-            </div>
         </div>
+        {{/each}}
+    </div>
+</div>
+<script>
+    const  dict = new Map();
+    const  setSP = new Set();
+    sl = 0;
+    function themvao(masp, tensp, giaban, maxquan) {
+        maxquan = parseInt(maxquan);
+        if (setSP.has(masp)) {
+            x = dict.get( masp );
+            if (x[2] == maxquan){
+                alert("Cannot exceed product quantity");
+            }
+            else {
+                sl++;
+                x[2]++
+                dict.set( masp, x );
+            }
+        } else {
+            sl++;
+            dict.set( masp, [tensp, giaban, 1] );
+            setSP.add(masp);
+        }
+        console.log(dict);
         
+        
+        var elem = document.getElementById("soluong");
+        elem.innerText = sl
 
-    </body>
-</html>
+    }
+
+    function cartview() {
+        window.location.href = "/user/cart";
+        var xhr = new XMLHttpRequest();
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(dict));
+       
+    }
+</script>
