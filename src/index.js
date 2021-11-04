@@ -17,6 +17,7 @@ const db = require('./config/db');
 app.use(bodyParser.urlencoded({extended:true}));
 db.connect();
 
+
 //session config
 app.use(session({
     secret: 'mySecretKey',
@@ -45,7 +46,11 @@ app.use(methodOverride('_method'));
 app.engine('hbs', handlebars({
     defaultLayout:'main',
     extname: '.hbs',
-    
+    helpers: {
+        'multiply': function(unitprice, quantity) {
+            return unitprice * quantity;
+        } 
+    } 
 }));
 app.set("views", path.join(__dirname, "resources/views")); //setting views directory for views. 
 app.set("view engine", "hbs"); //setting view engine as handlebars 
@@ -53,6 +58,10 @@ app.set("view engine", "hbs"); //setting view engine as handlebars
 /// PUBLIC FILEs
 app.use(express.static('public'))
 
+// //handlebars register helpers
+// handlebars.registerHelper("multiply", function(unitprice, quantity) {
+//     return unitprice * quantity;
+// });
 
 /// Khai bao cac Config, Params
 const hostname = "localhost";
