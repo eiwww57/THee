@@ -17,7 +17,7 @@ const upload = multer({
 });
 const middleware = require('../app/middleware/authenticate');
 
-router.get('/:id', productController.productDetails)
+
 router.get('/', productController.index)
 
 

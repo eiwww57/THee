@@ -54,7 +54,8 @@
                 x[2]++
                 dict.set( masp, x );
             }
-        } else {
+        } 
+        else {
             sl++;
             dict.set( masp, [tensp, giaban, 1] );
             setSP.add(masp);
@@ -65,8 +66,16 @@
         var elem = document.getElementById("soluong");
         elem.innerText = sl;
         var cartinfo = document.getElementById('cart');
-        cartinfo.value = JSON.stringify(dict, replacer);
+        if (cartinfo){
+             cartinfo.value = JSON.stringify(dict, replacer);
+        }
+        else{
+            alert("No iteam in cart");
+        }
+       
     }
+
+
     function gid(a_id) {
     return document.getElementById(a_id);
 }

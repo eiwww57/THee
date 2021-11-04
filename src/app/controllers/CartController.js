@@ -24,11 +24,19 @@ class CartController {
         });
         cartdetail.save()
         .then(c => {
-            res.redirect('/cart');
+            res.redirect('products');
         })
         .catch(error => {
             console.log(error);
         });
+    }
+    bill (req, res){
+        req.session.userID;
+        req.session.userName;
+        Cart.find({isbill:false}).lean()
+        .then(data=>{
+            res.render('bill', {data})
+        })
     }
 }
 module.exports = new CartController;
