@@ -1,4 +1,5 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
 <div class="container">
    <div class="col-md-12">
       <div class="invoice">
@@ -11,23 +12,16 @@
          </div>
          <!-- end invoice-company -->
          <!-- begin invoice-header -->
+         {{#data}}
          <div class="invoice-header">
-            <div class="invoice-from">
-                 
-                  Staff Name:{{data.Staffname}}<br>
-                  Staff ID: {{data.StaffID}}<br>
-                 <small id="month" >Invoice / July period</small>
-               <div class="date text-inverse m-t-5">August 3,2012</div>
-               <div class="invoice-detail">
-                  #0000123DSS<br>
-                  Services Product
-               </div>
-               </address>
+            <div >
+               <img src="/imgs/Quy trình/logo.png" style="width: 250px; height:auto; float:right;">
+               Staff Name:{{this.Staffname}}<br>
+               Staff ID: {{this.StaffID}}<br>
+               Datetime: {{this.updatedAt}} <br>
+               BillID: {{this._id}} <br>     
             </div>
-            
-            <div class="invoice-date">
-              <img src="/imgs/Quy trình/logo.png" style="width: 300px; height:auto">
-            </div>
+
          </div>
          <!-- end invoice-header -->
          <!-- begin invoice-content -->
@@ -47,27 +41,35 @@
                   <tbody>
                      {{data}}
 
-                     {{#each data}}
+                     {{#each products}}
                      <tr>
-                       
                         <td>
-                           <span class="text-inverse">{{this._id}}</span><br>
+                           <span class="text-inverse">{{this.ProName}}</span><br>
                            
                         </td>
                         <td>
-                           <span class="text-inverse">{{this.products.0.ProID}}</span><br>
+                           <span class="text-inverse">{{this.ProID}}</span><br>
                           
                         </td>
                         <td>
-                           <span class="text-inverse">{{this.products.0.Quantity}}</span><br>
+                           <span class="text-inverse">{{this.Quantity}}</span><br>
                           
                         </td>
                         <td>
-                           <span class="text-inverse">{{this.products.0.Price}}</span><br>
+                           <span class="text-inverse" id="total">{{this.Price}}</span><br>
                           
                         </td>
                      
                      </tr>
+                     <script>
+                        sum_each(){
+                           var quantity = parseInt();
+                           var unitprice = parseInt({{this.Price}});
+                           var total = document.getElementById('total');
+                           total.innerText = quantity * unitprice;
+                        }
+               
+                     </script>
                      
                      {{/each}}
                   </tbody>
@@ -78,7 +80,7 @@
             <div class="invoice-price">
                
                <div class="invoice-price-right">
-                  <small>TOTAL</small> <span class="f-w-600">$$$</span>
+                  <small>TOTAL</small> <span class="f-w-600">{{this.totalprice}} VNĐ</span>
                </div>
             </div>
             <!-- end invoice-price -->
@@ -105,8 +107,9 @@
          <!-- end invoice-footer -->
       </div>
    </div>
+   {{/data}}
 </div>
-
+</body>
 
 <style>
 

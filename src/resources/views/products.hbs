@@ -43,6 +43,12 @@
     const  setSP = new Set();
     sl = 0;
     function themvao(masp, tensp, giaban, maxquan) {
+        var cart1 = document.getElementById('cart1');
+        var cart2 = document.getElementById('cart2');
+        if (cart1.style.display == "none") {
+            cart2.style.display = "none";
+            cart1.style.display = "block";
+        }
         maxquan = parseInt(maxquan);
         if (setSP.has(masp)) {
             x = dict.get( masp );

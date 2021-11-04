@@ -10,7 +10,7 @@ class CartController {
             var cart2 = {};
             cart2.ProID = e[0];
             cart2.ProName = e[1][0];
-            cart2.Price = e[1][1];
+            cart2.Price = Number(e[1][1]);
             cart2.Quantity = e[1][2];
             cart1.push(cart2);
             sum = sum + (parseInt(e[1][1])*e[1][2]);
@@ -24,7 +24,7 @@ class CartController {
         });
         cartdetail.save()
         .then(c => {
-            res.redirect('products');
+            res.redirect('/products');
         })
         .catch(error => {
             console.log(error);
@@ -33,7 +33,7 @@ class CartController {
     bill (req, res){
         req.session.userID;
         req.session.userName;
-        Cart.find({isbill:false}).lean()
+        Cart.findOne({isbill:false}).lean()
         .then(data=>{
             res.render('bill', {data})
         })
