@@ -1,4 +1,5 @@
 const Cart = require('../schema/cart');
+const Product = require('../schema/product');
 
 class CartController {
     addcart(req, res){
@@ -24,7 +25,7 @@ class CartController {
         });
         cartdetail.save()
         .then(c => {
-            res.redirect('/products');
+            res.redirect('/cart');
         })
         .catch(error => {
             console.log(error);
@@ -37,6 +38,37 @@ class CartController {
         .then(data=>{
             res.render('bill', {data})
         })
+    }
+    async bill_export (req, res) {
+        var billID = req.query.id;
+        var cart = await Cart.findOneAndUpdate({_id: billID}, {
+            isbill: true
+        });
+        Array.prototype.forEach.call(cart.products, (product) => {
+            Product.findOne({'ProID': product.ProID}).lean().
+            exec( (err, docs) => {
+                if (err){
+                    console.log("\n ERR: ", err);
+                }
+                else {
+                    var new_quantity = parseInt(docs.numofpro) - parseInt(product.Quantity);
+                    Product.findOneAndUpdate({'ProID': product.ProID}, {
+                        numofpro: String(new_quantity)
+                    }).lean().
+                    exec((err, final) => {
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            console.log(final);
+                        }
+                    });
+                }
+            })
+        });
+        setTimeout(() => {
+            res.redirect('/products');
+        },2000);
     }
 }
 module.exports = new CartController;

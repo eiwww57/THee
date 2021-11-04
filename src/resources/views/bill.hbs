@@ -3,16 +3,16 @@
 <div class="container">
    <div class="col-md-12">
       <div class="invoice">
+         {{#data}}
          <!-- begin invoice-company -->
          <div class="invoice-company text-inverse f-w-600">
             <span class="pull-right hidden-print">
-            <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
+            <a href="/cart/bill_export?id={{this._id}}" onclick="alert('Successfully')" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
             </span>
-            T-Hee Name, Inc
+            T-Hee Uniform, Inc
          </div>
          <!-- end invoice-company -->
          <!-- begin invoice-header -->
-         {{#data}}
          <div class="invoice-header">
             <div >
                <img src="/imgs/Quy trình/logo.png" style="width: 250px; height:auto; float:right;">
@@ -75,6 +75,7 @@
             <!-- end invoice-price -->
          </div>
          <!-- end invoice-content -->
+         
          <!-- begin invoice-note -->
          <div class="invoice-note">
             * Make all cheques payable to T-HEE UNIFORM<br>
@@ -98,15 +99,7 @@
    </div>
    {{/data}}
 </div>
-<script>
-   sum_each(unitprice, quantity){
-      quantity = parseInt(quantity);
-      unitprice = parseInt(unitprice);
-      var total = document.getElementById('total');
-      total.innerText = quantity * unitprice;
-   }
-               
-</script>
+
 </body>
 
 <style>
@@ -231,10 +224,5 @@
 }
 </style>
 
-<script>
-const date =new Date();
-document.getElementById('month').innerHTML= date.toLocaleString('default', {month:'long'});
 
-    
-</script>
 
