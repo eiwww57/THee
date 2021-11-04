@@ -26,10 +26,14 @@
 			<li class="nav-item">
 				<form method="POST" action="/cart">
 					<input type="hidden" id="cart" name="cartinfo">
-					<button type="submit" class="nav-link position-relative">Cart
+					<button type="submit" class="nav-link position-relative" style="border: none;
+					background: none;">Cart
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="soluong"></span>
 					</button>
 				</form>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="/cart/bill">History</a>
 			</li>
 		  </ul>
 		</div>
@@ -70,7 +74,6 @@
             margin-right: auto;
         }	
         .col-lg-4{ 
-            background-color:azure;
             margin-top: 1%;
         }
         a{

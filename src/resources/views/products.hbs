@@ -1,31 +1,41 @@
+<style>
+    .grid{
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-gap: 10px;
+        padding-top: 10px;
+    }
+</style>
 <div class="container"> 
     <div class="row" id="intro">
         <div class="col-12">
             <img class="d-block w-100" src="/imgs/Quy trình/coverphoto.jpg" alt="Second slide">
             <h1 style="text-align: center; font-size: 5em; margin-top:auto;">Products</h1>
-            <form action="/products/search" method="get" style="padding-bottom: 35px;">
+            {{!-- <form action="/products/search" method="get" style="padding-bottom: 35px;">
             
                 <input type="text" class="form-control" name="ProName" placeholder="Cloth name"  >
 
-            </form>
+            </form> --}}
+            <input type="text" id="edit_search" onkeyup="find_my_div();">
+            <input type="button" onClick="find_my_div();" value="Find">
+            <input type="button" onClick="show_all();" value="Show all">
         </div>
     </div>
-
     <div class="row">
-        {{#each products}}
-        <div class="col-lg-4">
-            <div class="card">
-                <img class="card-img-top" src="/{{this.imglink}}" alt="Card image" style="height: 250px;width:100%;object-fit: cover;">
-                <div class="card-body">
-                    <h4 class="card-title">{{this.ProName}}</h4>
-                    <p class="card-text">{{this.Description}}</p>
-                    <p class="card-text">Available: {{this.numofpro}} units</p>
-                    <span><button onclick="themvao('{{this.ProID}}', '{{this.ProName}}', '{{this.Price}}','{{this.numofpro}}')">Add to cart</button></span>
-                    <p style="float: right;">Price: {{this.Price}} VNĐ</p>
+        <div class="grid">
+            {{#each products}}
+                <div class="card" style="display: block; position:relative;">
+                    <img class="card-img-top" src="/{{this.imglink}}" alt="Card image" style="height: 250px;width:100%;object-fit: cover;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{this.ProName}}</h4>
+                        <p class="card-text">{{this.Description}}</p>
+                        <p class="card-text">Available: {{this.numofpro}} units</p>
+                        <span><button onclick="themvao('{{this.ProID}}', '{{this.ProName}}', '{{this.Price}}','{{this.numofpro}}')">Add to cart</button></span>
+                        <p style="float: right;">Price: {{this.Price}} VNĐ</p>
+                    </div>
                 </div>
-            </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
 </div>
 <script>
@@ -56,5 +66,65 @@
         elem.innerText = sl;
         var cartinfo = document.getElementById('cart');
         cartinfo.value = JSON.stringify(dict, replacer);
+    }
+    function gid(a_id) {
+    return document.getElementById(a_id);
+}
+
+    function close_all() {
+        
+        for (i = 0; i < 999; i++) {
+            var o = gid("product_" + i);
+            if (o) {
+                o.style.display = "none";
+            }
+        }
+        
+    }
+
+    function show_all(){
+        var card = document.getElementsByClassName("card");
+        for (var j = 0, divsLen = card.length; j < divsLen; j++) {
+            card[j].style.display = "block";
+        }
+    }
+
+
+    function find_my_div() {
+        close_all();
+        
+        var o_edit = gid("edit_search");
+        var str_needle = edit_search.value;
+        str_needle = str_needle.toUpperCase();
+        var searchStrings = str_needle.split(/\W/);
+        
+        // I moved this loop outside
+        var nameDivs = document.getElementsByClassName("card-title");
+        var card = document.getElementsByClassName("card");
+        for (var j = 0, divsLen = nameDivs.length; j < divsLen; j++) {
+
+            // set a counter to zero
+            var num = 0;
+
+            // I moved this loop inside
+            for (var i = 0, len = searchStrings.length; i < len; i++) {
+                var currentSearch = searchStrings[i].toUpperCase();
+                // only run the search if the text input is not empty (to avoid a blank)
+                if (str_needle !== "") {
+                    // if the term is found, add 1 to the counter
+                    if (nameDivs[j].textContent.toUpperCase().indexOf(currentSearch) !== -1) {
+                        num++;
+                    }
+                    // display only if all the terms where found
+                    if (num == searchStrings.length) {
+                        card[j].style.display = "block";
+                    }
+                    else {
+                        card[j].style.display = "none";
+                    }
+                    
+                }
+            }
+        }
     }
 </script>

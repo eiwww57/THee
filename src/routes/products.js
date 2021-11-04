@@ -15,8 +15,8 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage:storage
 });
+const middleware = require('../app/middleware/authenticate');
 
-router.get('/search', productController.searchProduct);
 router.get('/:id', productController.productDetails)
 router.get('/', productController.index)
 

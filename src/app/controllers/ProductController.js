@@ -15,22 +15,7 @@ class ProductController {
             }
         });
     }
-    productDetails(req, res){
-        Product.findOne({ProID: req.params.id}, req.body).lean()
-        .then(data=>{
-            res.render('product_detail', {data})
-        });
 
-    }
-
-    searchProduct(req,res,next){
-        const input = req.query.ProName;
-        let regex = new RegExp(input,'i');
-        Product.find({"ProName": regex}).lean()
-        .then(data=>{
-            res.render('products', {products:data});
-        })
-    }
     
 }
 

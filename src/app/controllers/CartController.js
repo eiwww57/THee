@@ -24,7 +24,7 @@ class CartController {
         });
         cartdetail.save()
         .then(c => {
-            res.send('Succesfully')
+            res.redirect('/cart');
         })
         .catch(error => {
             console.log(error);
