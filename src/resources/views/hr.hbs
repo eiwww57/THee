@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<h3><a class="btn btn-secondary" href="/dashboard"><i class="fa fa-plus"></i> Dashboard</a>  Staff</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Staff ID</th>
+            <th>Staff Name</th>
+            <th>Phone</th>         
+            <th>Email</th>
+            <th>Admin</th>
+            <th>More info</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.phone}}</td>
+            <td>{{this.email}}</td>
+            <td><a href="/admin/stafflevel/{{this._id}}" style="text-decoration: none;"> {{this.admin}}</a></td>
+            
+             <td>
+                <a href="/admin/staff/staffdetail/{{this._id}}" style="text-decoration: none;">Detail</a>
+              
+                
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+

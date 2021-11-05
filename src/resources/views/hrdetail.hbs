@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Staff Information</h1>
+    <form method="post" action="/admin/updatestaff/{{data._id}}" enctype="multipart/form-data"  >
+
+        <div>
+        <div class="form-group">
+        <label>StaffID ID</label>
+        <input type="text" class="form-control" name="ProID" placeholder="Cloth ID" value="{{data._id}}" >
+        <div class="text-danger">
+            </div>
+    </div>
+
+    <div>
+        <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="ProName" placeholder="Cloth name" value="{{data.name}}" >
+        <div class="text-danger">
+            </div>
+    </div>
+
+    <div class="form-group">
+        <label>Phone</label>
+        <input type="text" class="form-control" name="Price" placeholder="price"  value="{{data.phone}}">
+        <div class="text-danger">
+           </div>
+    </div>
+
+    <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="numofpro" placeholder="quantity" value="{{data.email}}" >
+    </div>
+
+    
+    
+   
+  
+        
+      
+
+        <button type="submit" class="btn btn-info" id="submitbutton">Update Staff Information</button>
+    
+     
+      {{!-- <a type="submit" class="btn btn-secondary" ><i class="fa fa-list-alt" ></i> View All</a> --}}
+    </form>
+     <style>
+          
+
+.center {
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.form-input {
+  width:500px;
+  padding:20px;
+  background:#fff;
+  border:2px dashed #555;
+}
+.form-input input {
+  display:none;
+}
+.form-input label {
+  display:block;
+  width:100%;
+  height:50px;
+  line-height:50px;
+  text-align:center;
+  background:#333;
+  color:#fff;
+  font-size:15px;
+  font-family:"Open Sans",sans-serif;
+  text-transform:Uppercase;
+  font-weight:600;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.form-input img {
+  width:100%;
+  display:none;
+  margin-top:10px;
+}
+      </style>
+    <script>
+        function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("file-ip-1-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
+
+    </script>
+</body>
+</html>

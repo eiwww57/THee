@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<h3 id="total"></h3>
+<button onclick="update()">Revanue</button>
+<a class="btn btn-secondary" href="/dashboard"><i class="fa fa-plus"></i> Dashboard</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Bill ID</th>
+            <th>Staff Name</th>
+            <th>Date</th>         
+            <th>Total Price</th>
+            <th>More info</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr class="items">
+            <td>{{this._id}}</td>
+            <td>{{this.Staffname}}</td>
+            <td>{{this.updatedAt}}</td>
+            <td class="price">{{this.totalprice}}</td>
+            
+             <td>
+                <a href="/admin/sale/billdetail/{{this._id}}" style="text-decoration: none;">Detail</a>
+              
+                
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+
+    function update(){
+
+         var cart = document.getElementsByClassName('price')
+         var all =0;
+         
+    for (var i=0; i < cart.length; i++){
+        
+        var price = parseFloat(cart[i].innerText);
+        all= all +price;
+        
+
+
+    }
+    console.log(all);
+    var total =document.getElementById('total')
+    total.innerText=all;
+    
+    
+    }
+   
+
+</script>
