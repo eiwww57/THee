@@ -22,6 +22,15 @@ class SiteController {
         req.session.userName = null;
         res.redirect('/user/login');
     }
+
+    godash(req,res){
+        User.findOne({name:req.session.userName}).lean()
+        .then(data=>{
+            res.render('dashboard',{data, layout:false})
+
+        })
+      
+    }
 }
 
 module.exports = new SiteController;

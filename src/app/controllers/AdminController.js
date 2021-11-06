@@ -1,5 +1,6 @@
+const cart = require('../schema/cart');
 const Product = require('../schema/product');
-
+const User = require('../schema/user');
 class AdminController {
     //[GET] /products
     index(req, res){
@@ -64,31 +65,52 @@ class AdminController {
         }
     }
 
-    editImg(req,res){
-        
-        Product.findOne({_id:req.params.id}, req.body).lean()
+    viewBill(req,res){
+        cart.find({isbill:true}).lean()
         .then(data=>{
-            res.render('imgedit',{data})
+            res.render('sale',{data})
         })
     }
 
-    updateImg(req,res){
-
-        if(req.file){
-            req.body.imglink = "imgs/" + req.file.filename;
-            Product.updateOne({_id:req.params.id},req.body).lean()
-            .then(data=>{
-                res.redirect('/admin/viewproducts')
-            })
-        }
-        else{
-            Product.updateOne({_id:req.params.id},req.body).lean()
-            .then(data=>{
-                res.redirect('/admin/viewproducts')
-            })
-        }
-       
+    billDetail(req,res){
+        cart.findOne({_id:req.params.id}).lean()
+        .then(data=>{
+            res.render('billdetail', {data})
+        })
     }
+   
+    
+
+    staffDetail(req,res){
+        User.findOne({_id:req.params.id}).lean()
+        .then(data=>{
+            res.render('hrdetail', {data})
+        })
+    }
+
+    vieweStaff(req,res){
+        User.find().lean()
+        .then(data=>{
+            res.render('hr', {data})
+        })
+    }
+
+
+    adminAuthen(req,res){
+       User.updateOne({_id:req.params.id},{admin:true})
+        .then(data=>{
+            res.redirect('/admin/staff')
+        })
+    }
+
+    updateStaff(req,res){
+        console.log(req.body)
+        User.updateOne({_id:req.params.id}, req.body).lean()
+        .then(data=>{
+            res.redirect('/admin/staff')
+        })
+    }
+   
 }
 
 module.exports = new AdminController;

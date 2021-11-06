@@ -56,10 +56,10 @@ class UserController {
                         }
                         let token = jwt.sign(payload, 'SecretValue', {expiresIn: '1h'});
                         if (user.admin == true){
-                            res.redirect('/admin?token=Bearer '+token);
+                            res.redirect('/dashboard?token=Bearer '+token);
                         }
                         else {
-                            res.redirect('/?token=Bearer '+token);
+                            res.redirect('/products?token=Bearer '+token);
                         }
                         
                     } else {

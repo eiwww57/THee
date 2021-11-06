@@ -19,11 +19,14 @@ const adminController = require('../app/controllers/AdminController');
 const middleware = require('../app/middleware/authenticate');
 
 
-//Method put
-const methodOverride = require('method-override');
-const exp = require("constants");
 
 
+router.post('/updatestaff/:id',middleware.adminAuth, adminController.updateStaff)
+router.get('/stafflevel/:id', adminController.adminAuthen); //admin true/false
+router.get('/staff/staffdetail/:id', adminController.staffDetail);
+router.get('/staff', adminController.vieweStaff)
+router.get('/sale/billdetail/:id', adminController.billDetail)
+router.get('/sale', adminController.viewBill);
 router.get('/viewproducts',middleware.adminAuth, adminController.viewProducts);
 router.post('/addproducts', upload.single('imglink'), adminController.addProducts);
 router.get('/deleteproducts', adminController.deleteProducts);

@@ -11,12 +11,12 @@
 </head>
 <body>
     <h1>Staff Information</h1>
-    <form method="post" action="/admin/updatestaff/{{data._id}}" enctype="multipart/form-data"  >
+    <form method="post" action="/admin/updatestaff/{{data._id}}"  >
 
         <div>
         <div class="form-group">
         <label>StaffID ID</label>
-        <input type="text" class="form-control" name="ProID" placeholder="Cloth ID" value="{{data._id}}" >
+        <input type="text" class="form-control" name="_id" placeholder="Cloth ID" value="{{data._id}}"  disabled >
         <div class="text-danger">
             </div>
     </div>
@@ -24,21 +24,21 @@
     <div>
         <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" name="ProName" placeholder="Cloth name" value="{{data.name}}" >
+        <input type="text" class="form-control" name="name" placeholder="Cloth name" value="{{data.name}}" >
         <div class="text-danger">
             </div>
     </div>
 
     <div class="form-group">
         <label>Phone</label>
-        <input type="text" class="form-control" name="Price" placeholder="price"  value="{{data.phone}}">
+        <input type="text" class="form-control" name="phone" placeholder="price"  value="{{data.phone}}">
         <div class="text-danger">
            </div>
     </div>
 
     <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" name="numofpro" placeholder="quantity" value="{{data.email}}" >
+            <input type="text" class="form-control" name="email" placeholder="quantity" value="{{data.email}}" >
     </div>
 
     
