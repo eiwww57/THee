@@ -59,7 +59,7 @@ class UserController {
                             res.redirect('/dashboard?token=Bearer '+token);
                         }
                         else {
-                            res.redirect('/products?token=Bearer '+token);
+                            res.redirect('/?token=Bearer '+token);
                         }
                         
                     } else {

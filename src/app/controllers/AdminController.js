@@ -97,7 +97,7 @@ class AdminController {
 
 
     adminAuthen(req,res){
-       User.updateOne({_id:req.params.id},{admin:true})
+       User.updateOne({_id:req.params.id},[{$set:{admin:{$eq:[false,"$admin"]}}}])
         .then(data=>{
             res.redirect('/admin/staff')
         })
