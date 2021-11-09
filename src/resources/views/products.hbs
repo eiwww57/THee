@@ -50,9 +50,9 @@
             cart1.style.display = "block";
         }
         maxquan = parseInt(maxquan);
-        if (setSP.has(masp)) {
+        if ((setSP.has(masp)) || (maxquan == 0)) {
             x = dict.get( masp );
-            if (x[2] == maxquan){
+            if (x[2] == maxquan) {
                 alert("Cannot exceed product quantity");
             }
             else {
